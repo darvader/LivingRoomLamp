@@ -37,7 +37,7 @@ const int RELAISE4 = 2;
 const int RELAISE5 = 14;
 const int RELAISE6 = 12;
 const int RELAISE7 = 13;
-int lamps[] = {RELAISE1, RELAISE2, RELAISE3, RELAISE4, RELAISE5, RELAISE6, RELAISE7};
+const int lamps[] = {RELAISE1, RELAISE2, RELAISE3, RELAISE4, RELAISE5, RELAISE6, RELAISE7};
 WebSerialClass WebSerial;
 
 const int ESP_BUILTIN_LED = 2;
@@ -205,7 +205,7 @@ void receiveUdp() {
       // send back a reply, to the IP address and port we got the packet from
       masterIp = Udp.remoteIP();
       Udp.beginPacket(masterIp, 4445);
-      Udp.write(replyPacket, 10);
+      Udp.write(replyPacket, 14);
       Udp.endPacket();
       // rotatePixels();
       return;
@@ -213,7 +213,7 @@ void receiveUdp() {
     if (std::strcmp(incomingPacket,"off") == 0) {
       off();
       return;
-     } else on();
+     } 
 
     if (strstr(incomingPacket,"numLamps=") != NULL) {
       lampsOn = incomingPacket[9];
